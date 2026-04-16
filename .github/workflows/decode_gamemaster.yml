@@ -1,0 +1,66 @@
+name: Decode Game Master
+
+on:
+  push:
+    paths:
+      - "raw/v2_GAME_MASTER"
+      - "proto/gamemaster.proto"
+
+jobs:
+  decode:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install protoc
+        uses: arduino/setup-protoc@v3
+        with:
+          version: "25.1"
+
+      - name: Install Python dependencies
+        run: |
+          pip install protobuf googleapis-common-protos
+
+      - name: Generate Python protobuf classes
+        run: |
+          protoc --python_out=python proto/gamemaster.proto
+
+      - name: Run decode script
+        run: |
+          python src/decode.py
+
+      - name: Rotate JSON files
+        run: |
+          mkdir -p latest previous historical
+
+          # If latest/game_master.json exists → move to previous/
+          if [ -f latest/game_master.json ]; then
+            mv latest/game_master.json previous/game_master.json
+          fi
+
+          # If previous/game_master.json exists → move to historical/ with timestamp
+          if [ -f previous/game_master.json ]; then
+            ts=$(date +"%Y%m%d_%H%M%S")
+            mv previous/game_master.json historical/game_master_$ts.json
+          fi
+
+          # Move new file into latest/
+          mv python/game_master.json latest/game_master.json
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+
+          git add latest previous historical
+          git commit -m "Update Game Master JSON (auto)"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

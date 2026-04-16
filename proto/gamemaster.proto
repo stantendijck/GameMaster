@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+message GameMaster {
+  repeated Template templates = 2;
+}
+
+message Template {
+  string template_id = 1;
+  TemplateData data = 2;
+}
+
+message TemplateData {
+  string template_id = 1;
+  PokemonSettings pokemon_settings = 2;
+  PokemonType pokemon_type = 8;
+  CombatMove combat_move = 37;
+}
+
+message PokemonSettings {
+  int32 pokemonId = 1;
+  int32 type = 4;
+  int32 type2 = 5;
+  PokemonStats pokemonStats = 8;
+  bytes quickMoves = 9;
+  bytes cinematicMoves = 10;
+  bytes eliteCinematicMoves = 50;
+}
+
+message PokemonStats {
+  int32 baseStamina = 1;
+  int32 baseAttack = 2;
+  int32 baseDefense = 3;
+}
+
+message PokemonType {
+  bytes effectiveness = 1;
+  int32 type = 2;
+}
+
+message CombatMove {
+  int32 moveId = 1;
+  int32 type = 2;
+  float power = 3;
+  string name = 4;
+  int32 durationTurns = 5;
+  uint64 energyDelta = 6;
+  Buffs buffs = 7;
+}
+
+message Buffs {
+  int32 attackerAttackStatStageChange = 1;
+  int32 attackerDefenseStatStageChange = 2;
+  int32 targetAttackStatStageChange = 3;
+  int32 targetDefenseStatStageChange = 4;
+  float buffActivationChance = 5;
+}
