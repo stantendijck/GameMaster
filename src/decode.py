@@ -128,7 +128,16 @@ fixed_dict = fix_numbers(raw_dict)
 
 # Step 2: decode packed varints like quickMoves/cinematicMoves
 fixed_dict = fix_packed_varints(fixed_dict)
-# print(fixed_dict)
+
+# Step 3: subset json to only contain relevant fields
+subset_json = [
+    d 
+    for d in fixed_dict["templates"]
+    if "combatMove" in d["data"].keys()
+    or "pokemonSettings" in d["data"].keys()
+    or "pokemonType" in d["data"].keys()
+]
+print(subset_json)
 
 # Step 3: write JSON
 with open("src/game_master.json", "w", encoding="utf-8") as out:
