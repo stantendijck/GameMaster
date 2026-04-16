@@ -114,7 +114,7 @@ def fix_packed_varints(obj):
 
 # --- Main decoding ---
 
-with open("python/v2_GAME_MASTER", "rb") as f:
+with open("raw/v2_GAME_MASTER", "rb") as f:
     data = f.read()
 
 gm = GameMaster()
