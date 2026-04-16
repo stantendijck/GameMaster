@@ -141,7 +141,7 @@ print(subset_json)
 
 # Step 3: write JSON
 with open("src/game_master.json", "w", encoding="utf-8") as out:
-    json.dump(fixed_dict["templates"], out, indent=2)
+    json.dump(subset_json, out, indent=2)
 
 print("✅ Game Master JSON written to src/game_master.json")
 
