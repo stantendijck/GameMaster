@@ -34,7 +34,7 @@ jobs:
 
       - name: Run decode script
         run: |
-          python src/decode.py
+          python -m src.decode
 
       - name: Rotate JSON files
         run: |
@@ -52,7 +52,7 @@ jobs:
           fi
 
           # Move new file into latest/
-          mv python/game_master.json latest/game_master.json
+          mv src/game_master.json latest/game_master.json
 
       - name: Commit and push changes
         run: |

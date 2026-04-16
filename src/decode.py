@@ -131,10 +131,10 @@ fixed_dict = fix_packed_varints(fixed_dict)
 # print(fixed_dict)
 
 # Step 3: write JSON
-with open("python/game_master.json", "w", encoding="utf-8") as out:
+with open("src/game_master.json", "w", encoding="utf-8") as out:
     json.dump(fixed_dict["templates"], out, indent=2)
 
-print("✅ Game Master JSON written to python/game_master.json")
+print("✅ Game Master JSON written to src/game_master.json")
 
 # Notes: - how to use:
 # protoc --python_out=. ./python/gamemaster.proto
