@@ -30,7 +30,7 @@ jobs:
 
       - name: Generate Python protobuf classes
         run: |
-          protoc --python_out=python proto/gamemaster.proto
+          protoc --python_out=src proto/gamemaster.proto
 
       - name: Run decode script
         run: |
