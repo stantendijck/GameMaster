@@ -3471,6 +3471,74 @@
     }
   },
   {
+    "templateId": "COMBAT_V0360_MOVE_AEROBLAST_PLUS",
+    "data": {
+      "templateId": "COMBAT_V0360_MOVE_AEROBLAST_PLUS",
+      "combatMove": {
+        "moveId": 360,
+        "type": 3,
+        "power": 170.0,
+        "name": "aeroblast",
+        "energyDelta": -75,
+        "buffs": {
+          "attackerAttackStatStageChange": 2,
+          "buffActivationChance": 0.125
+        }
+      }
+    }
+  },
+  {
+    "templateId": "COMBAT_V0361_MOVE_AEROBLAST_PLUS_PLUS",
+    "data": {
+      "templateId": "COMBAT_V0361_MOVE_AEROBLAST_PLUS_PLUS",
+      "combatMove": {
+        "moveId": 361,
+        "type": 3,
+        "power": 170.0,
+        "name": "aeroblast",
+        "energyDelta": -75,
+        "buffs": {
+          "attackerAttackStatStageChange": 2,
+          "buffActivationChance": 0.125
+        }
+      }
+    }
+  },
+  {
+    "templateId": "COMBAT_V0362_MOVE_SACRED_FIRE_PLUS",
+    "data": {
+      "templateId": "COMBAT_V0362_MOVE_SACRED_FIRE_PLUS",
+      "combatMove": {
+        "moveId": 362,
+        "type": 10,
+        "power": 130.0,
+        "name": "sacred_fire",
+        "energyDelta": -65,
+        "buffs": {
+          "targetAttackStatStageChange": -1,
+          "buffActivationChance": 0.5
+        }
+      }
+    }
+  },
+  {
+    "templateId": "COMBAT_V0363_MOVE_SACRED_FIRE_PLUS_PLUS",
+    "data": {
+      "templateId": "COMBAT_V0363_MOVE_SACRED_FIRE_PLUS_PLUS",
+      "combatMove": {
+        "moveId": 363,
+        "type": 10,
+        "power": 130.0,
+        "name": "sacred_fire",
+        "energyDelta": -65,
+        "buffs": {
+          "targetAttackStatStageChange": -1,
+          "buffActivationChance": 0.5
+        }
+      }
+    }
+  },
+  {
     "templateId": "COMBAT_V0364_MOVE_ACROBATICS",
     "data": {
       "templateId": "COMBAT_V0364_MOVE_ACROBATICS",
