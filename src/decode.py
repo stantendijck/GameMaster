@@ -133,9 +133,11 @@ fixed_dict = fix_packed_varints(fixed_dict)
 subset_json = [
     d 
     for d in fixed_dict["templates"]
-    if "combatMove" in d["data"].keys()
-    or "pokemonSettings" in d["data"].keys()
-    or "pokemonType" in d["data"].keys()
+    if (
+        ("combatMove" in d["data"].keys() and not d["templateId"].endswith("_PLUS") )
+        or "pokemonSettings" in d["data"].keys()
+        or "pokemonType" in d["data"].keys()
+    )
 ]
 print(subset_json)
 
