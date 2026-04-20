@@ -57,25 +57,6 @@ def packed_varint_field_to_list(b64_str):
     raw_bytes = base64.b64decode(b64_str)
     return decode_packed_varints(raw_bytes)
 
-# def fix_packed_varints(obj):
-#     """Recursively fix known packed varint fields in JSON dict."""
-#     packed_fields = ("quickMoves", "cinematicMoves", "eliteCinematicMoves", "effectiveness")  # add more if needed
-#     if isinstance(obj, dict):
-#         new_obj = {}
-#         for k, v in obj.items():
-#             if isinstance(v, str) and k in packed_fields:
-#                 try:
-#                     new_obj[k] = packed_varint_field_to_list(v)
-#                 except Exception:
-#                     # fallback: keep as-is if decoding fails
-#                     new_obj[k] = v
-#             else:
-#                 new_obj[k] = fix_packed_varints(v)
-#         return new_obj
-#     elif isinstance(obj, list):
-#         return [fix_packed_varints(v) for v in obj]
-#     else:
-#         return obj
 
 def fix_packed_varints(obj):
     packed_int_fields = ("quickMoves", "cinematicMoves", "eliteCinematicMoves")
@@ -129,12 +110,20 @@ fixed_dict = fix_numbers(raw_dict)
 # Step 2: decode packed varints like quickMoves/cinematicMoves
 fixed_dict = fix_packed_varints(fixed_dict)
 
+weird_moves = [
+    "wrap_green",
+    "wrap_pink",
+    "hydro_pump_blastoise",
+    "scald_blastoise",
+    "water_gun_fast_blastoise",
+]
+
 # Step 3: subset json to only contain relevant fields
 subset_json = [
     d 
     for d in fixed_dict["templates"]
     if (
-        ("combatMove" in d["data"].keys() and not d["templateId"].endswith("_PLUS") )
+        ("combatMove" in d["data"].keys() and not d["templateId"].endswith("_PLUS") and not d["data"]["combatMove"]["name"] in weird_moves )
         or "pokemonSettings" in d["data"].keys()
         or "pokemonType" in d["data"].keys()
     )
