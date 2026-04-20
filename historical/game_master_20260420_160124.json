@@ -1262,6 +1262,58 @@
     }
   },
   {
+    "templateId": "COMBAT_V0134_MOVE_SCALD_BLASTOISE",
+    "data": {
+      "templateId": "COMBAT_V0134_MOVE_SCALD_BLASTOISE",
+      "combatMove": {
+        "moveId": 134,
+        "type": 11,
+        "power": 50.0,
+        "name": "scald_blastoise",
+        "energyDelta": -80
+      }
+    }
+  },
+  {
+    "templateId": "COMBAT_V0135_MOVE_HYDRO_PUMP_BLASTOISE",
+    "data": {
+      "templateId": "COMBAT_V0135_MOVE_HYDRO_PUMP_BLASTOISE",
+      "combatMove": {
+        "moveId": 135,
+        "type": 11,
+        "power": 90.0,
+        "name": "hydro_pump_blastoise",
+        "energyDelta": -80
+      }
+    }
+  },
+  {
+    "templateId": "COMBAT_V0136_MOVE_WRAP_GREEN",
+    "data": {
+      "templateId": "COMBAT_V0136_MOVE_WRAP_GREEN",
+      "combatMove": {
+        "moveId": 136,
+        "type": 1,
+        "power": 25.0,
+        "name": "wrap_green",
+        "energyDelta": -45
+      }
+    }
+  },
+  {
+    "templateId": "COMBAT_V0137_MOVE_WRAP_PINK",
+    "data": {
+      "templateId": "COMBAT_V0137_MOVE_WRAP_PINK",
+      "combatMove": {
+        "moveId": 137,
+        "type": 1,
+        "power": 25.0,
+        "name": "wrap_pink",
+        "energyDelta": -45
+      }
+    }
+  },
+  {
     "templateId": "COMBAT_V0200_MOVE_FURY_CUTTER_FAST",
     "data": {
       "templateId": "COMBAT_V0200_MOVE_FURY_CUTTER_FAST",
@@ -1696,6 +1748,20 @@
         "name": "splash_fast",
         "durationTurns": 3,
         "energyDelta": 12
+      }
+    }
+  },
+  {
+    "templateId": "COMBAT_V0232_MOVE_WATER_GUN_FAST_BLASTOISE",
+    "data": {
+      "templateId": "COMBAT_V0232_MOVE_WATER_GUN_FAST_BLASTOISE",
+      "combatMove": {
+        "moveId": 232,
+        "type": 11,
+        "power": 6.0,
+        "name": "water_gun_fast_blastoise",
+        "durationTurns": 1,
+        "energyDelta": 4
       }
     }
   },
