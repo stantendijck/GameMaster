@@ -1262,32 +1262,6 @@
     }
   },
   {
-    "templateId": "COMBAT_V0134_MOVE_SCALD_BLASTOISE",
-    "data": {
-      "templateId": "COMBAT_V0134_MOVE_SCALD_BLASTOISE",
-      "combatMove": {
-        "moveId": 134,
-        "type": 11,
-        "power": 50.0,
-        "name": "scald_blastoise",
-        "energyDelta": -80
-      }
-    }
-  },
-  {
-    "templateId": "COMBAT_V0135_MOVE_HYDRO_PUMP_BLASTOISE",
-    "data": {
-      "templateId": "COMBAT_V0135_MOVE_HYDRO_PUMP_BLASTOISE",
-      "combatMove": {
-        "moveId": 135,
-        "type": 11,
-        "power": 90.0,
-        "name": "hydro_pump_blastoise",
-        "energyDelta": -80
-      }
-    }
-  },
-  {
     "templateId": "COMBAT_V0200_MOVE_FURY_CUTTER_FAST",
     "data": {
       "templateId": "COMBAT_V0200_MOVE_FURY_CUTTER_FAST",
