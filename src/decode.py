@@ -113,8 +113,8 @@ fixed_dict = fix_packed_varints(fixed_dict)
 weird_moves = [
     "wrap_green",
     "wrap_pink",
-    "hydro_pump_blastoise",
-    "scald_blastoise",
+    # "hydro_pump_blastoise",
+    # "scald_blastoise",
     # "water_gun_fast_blastoise",
 ]
 
