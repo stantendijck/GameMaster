@@ -1700,20 +1700,6 @@
     }
   },
   {
-    "templateId": "COMBAT_V0232_MOVE_WATER_GUN_FAST_BLASTOISE",
-    "data": {
-      "templateId": "COMBAT_V0232_MOVE_WATER_GUN_FAST_BLASTOISE",
-      "combatMove": {
-        "moveId": 232,
-        "type": 11,
-        "power": 6.0,
-        "name": "water_gun_fast_blastoise",
-        "durationTurns": 1,
-        "energyDelta": 4
-      }
-    }
-  },
-  {
     "templateId": "COMBAT_V0233_MOVE_MUD_SLAP_FAST",
     "data": {
       "templateId": "COMBAT_V0233_MOVE_MUD_SLAP_FAST",
