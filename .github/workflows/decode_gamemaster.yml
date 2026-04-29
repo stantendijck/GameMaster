@@ -2,20 +2,11 @@ name: Decode Game Master
 
 on:
   push:
-    # paths:
-    #   - "raw/v2_GAME_MASTER"
-    #   - "proto/gamemaster.proto"
+    branches:
+      - main
 
 permissions:
   contents: write
-
-# jobs:
-#   decode:
-#     runs-on: ubuntu-latest
-
-
-# on:
-#   push:
 
 jobs:
   decode:
