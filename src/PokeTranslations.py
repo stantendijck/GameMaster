@@ -42,7 +42,7 @@ def get_only_supported_languages(translations):
                 out[supported_language] = translations["zh-hant"]
             else:
                 out[supported_language] = translations[supported_language]
-    return out
+    return {"values": out}
 
 def get_species_languages(pokemon_id):
     url = f"https://pokeapi.co/api/v2/pokemon-species/{pokemon_id}/"
