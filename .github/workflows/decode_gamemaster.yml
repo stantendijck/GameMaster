@@ -29,6 +29,7 @@ jobs:
       - name: Install Python dependencies
         run: |
           pip install protobuf googleapis-common-protos
+          pip install requests
 
       - name: Generate Python protobuf classes
         run: |
