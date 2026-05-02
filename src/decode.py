@@ -1,96 +1,9 @@
 # decode.py
 from src.gamemaster_pb2 import GameMaster
+import src.PokeTranslations as PokeTranslation # import get_moves_languages, fix_move_name
+import src.decoding as decoding
 from google.protobuf.json_format import MessageToDict
-from google.protobuf.internal.decoder import _DecodeVarint
-import base64
 import json
-
-# --- Helper functions ---
-
-def uint64_to_int64(value):
-    """Convert uint64 to signed int64, handling large numbers."""
-    if isinstance(value, str) and value.isdigit():
-        num = int(value)
-        if num >= 2**63:
-            return num - 2**64
-        return num
-    elif isinstance(value, int):
-        if value >= 2**63:
-            return value - 2**64
-        return value
-    return value
-
-def fix_numbers(obj):
-    """Recursively fix uint64 numbers in dict/list."""
-    if isinstance(obj, dict):
-        return {k: fix_numbers(v) for k, v in obj.items()}
-    elif isinstance(obj, list):
-        return [fix_numbers(v) for v in obj]
-    else:
-        return uint64_to_int64(obj)
-
-def decode_packed_varints(raw_bytes):
-    """Decode packed varints from raw bytes (protobuf encoding)."""
-    numbers = []
-    i = 0
-    while i < len(raw_bytes):
-        n, new_i = _DecodeVarint(raw_bytes, i)
-        numbers.append(n)
-        i = new_i
-    return numbers
-
-import struct
-
-def decode_packed_floats(raw_bytes):
-    """Decode protobuf packed float field (4 bytes per float)."""
-    floats = []
-    for i in range(0, len(raw_bytes), 4):
-        chunk = raw_bytes[i:i+4]
-        if len(chunk) == 4:
-            (value,) = struct.unpack("<f", chunk)  # little-endian float
-            floats.append(value)
-    return floats
-
-
-def packed_varint_field_to_list(b64_str):
-    """Convert base64-encoded packed varint field to integer list."""
-    raw_bytes = base64.b64decode(b64_str)
-    return decode_packed_varints(raw_bytes)
-
-
-def fix_packed_varints(obj):
-    packed_int_fields = ("quickMoves", "cinematicMoves", "eliteCinematicMoves")
-    packed_float_fields = ("effectiveness",)
-
-    if isinstance(obj, dict):
-        new_obj = {}
-        for k, v in obj.items():
-
-            # --- FLOAT PACKED FIELDS ---
-            if isinstance(v, str) and k in packed_float_fields:
-                try:
-                    raw = base64.b64decode(v)
-                    new_obj[k] = decode_packed_floats(raw)
-                except Exception:
-                    new_obj[k] = v
-                continue
-
-            # --- INT PACKED FIELDS ---
-            if isinstance(v, str) and k in packed_int_fields:
-                try:
-                    new_obj[k] = packed_varint_field_to_list(v)
-                except Exception:
-                    new_obj[k] = v
-                continue
-
-            new_obj[k] = fix_packed_varints(v)
-
-        return new_obj
-
-    elif isinstance(obj, list):
-        return [fix_packed_varints(v) for v in obj]
-
-    return obj
 
 
 # --- Main decoding ---
@@ -105,10 +18,10 @@ gm.ParseFromString(data)
 raw_dict = MessageToDict(gm)
 
 # Step 1: convert uint64 → signed int
-fixed_dict = fix_numbers(raw_dict)
+fixed_dict = decoding.fix_numbers(raw_dict)
 
 # Step 2: decode packed varints like quickMoves/cinematicMoves
-fixed_dict = fix_packed_varints(fixed_dict)
+fixed_dict = decoding.fix_packed_varints(fixed_dict)
 
 weird_moves = [
     "wrap_green",
@@ -128,9 +41,37 @@ subset_json = [
         or "pokemonType" in d["data"].keys()
     )
 ]
-print(subset_json)
+# print(subset_json)
+print('here')
 
-# Step 3: write JSON
+# Step 4: add translations for moves
+# moves = [entry for entry in subset_json if 'combatMove' in entry['data']]
+error_names = []
+for i, entry in enumerate(subset_json):
+    print(i, len(subset_json))
+    print(entry)
+    try:
+        if 'combatMove' in entry["data"]:
+            name = entry["data"]["combatMove"]["name"]
+            fixed_name = PokeTranslation.fix_move_name(name)
+            translations = PokeTranslation.get_moves_languages(fixed_name)
+            entry["data"]["combatMove"]["translations"] = translations
+        elif 'pokemonSettings' in entry["data"]:
+            name = entry["data"]["pokemonSettings"]["pokemonId"]
+            translations = PokeTranslation.get_species_languages(name)
+            entry["data"]["pokemonSettings"]["translations"] = translations
+        elif 'pokemonType' in entry["data"]:
+            name = entry["data"]["templateId"]
+            translations = PokeTranslation.get_type_languages(name)
+            entry["data"]["pokemonType"]["translations"] = translations
+    except:
+        error_names.append(name)
+        pass
+print('error names:')
+print(error_names)
+
+
+# Step 5: write JSON
 with open("src/game_master.json", "w", encoding="utf-8") as out:
     json.dump(subset_json, out, indent=2)
 
