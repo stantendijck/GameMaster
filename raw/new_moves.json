@@ -1,0 +1,60 @@
+{
+    "Trailblaze": {
+        "de": "Wegbereiter",
+        "es": "Abrecaminos",
+        "ko": "개척하기"
+    },
+    "Bleakwind Storm": {
+        "de": "polarorkan",
+        "es": "vendaval gélido",
+        "ko": "찬바람폭풍"
+    },
+    "Sandsear Storm": {
+        "de": "Wüstenorkan",
+        "es": "Simún de Arena",
+        "ko": "열사의폭풍"
+
+    }, 
+    "Wildbolt Storm": {
+        "de": "Donnerorkan",
+        "es": "Electormenta",
+        "ko": "번개폭풍"
+
+    },
+    "Rage Fist": {
+        "de": "Zornesfaust",
+        "es": "Puño Furia",
+        "ko": "분노의주먹"
+
+    },
+    "Flower Trick": {
+        "de": "Blumentrick",
+        "es": "Truco Floral",
+        "ko": "트릭플라워"
+
+    },
+    "Torch Song": {
+        "de": "Loderlied",
+        "es": "Canto Ardiente",
+        "ko": "플레어송"
+
+    },
+    "Aqua Step": {
+        "de": "Wogentanz",
+        "es": "Danza Acuática",
+        "ko": "아쿠아스텝"
+
+    },
+    "Chilling Water": {
+        "de": "Kalte Dusche",
+        "es": "Agua Fría",
+        "ko": "찬물끼얹기"
+
+    },
+    "Gigaton Hammer": {
+        "de": "Riesenhammer",
+        "es": "Martillo Colosal",
+        "ko": "거대해머"
+
+    }
+}

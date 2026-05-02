@@ -30,13 +30,19 @@ SUPPORTED_LANGUAGES = {
 with open("raw/type_translations.json", "r") as f:
     type_translations = json.load(f)
 
+with open("raw/new_moves.json", "r") as f:
+    manual_move_translations = json.load(f)
+
 
 
 def get_only_supported_languages(translations):
     out = {}
     for supported_language in SUPPORTED_LANGUAGES:
         if supported_language not in translations:
-            out[supported_language] = translations['en']
+            if (translations['en'] in manual_move_translations) and (supported_language in manual_move_translations[translations['en']]):
+                out[supported_language] = manual_move_translations[translations['en']][supported_language]
+            else:
+                out[supported_language] = translations['en']
         else:
             if supported_language == "zh":
                 out[supported_language] = translations["zh-hant"]
