@@ -29,6 +29,8 @@ weird_moves = [
     "hydro_pump_blastoise",
     "scald_blastoise",
     "water_gun_fast_blastoise",
+    "gulp_missile_gulping",
+    "gulp_missile_gorging",
 ]
 
 # Step 3: subset json to only contain relevant fields
